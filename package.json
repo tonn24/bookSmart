@@ -1,0 +1,27 @@
+{
+  "name": "booksmart",
+  "version": "1.0.0",
+  "description": "A web page where you can add a book and write a summary on it. Other people can do that also and as a result you can get a lot of different thoughts and  angles on a book. ",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git remote add origin https://github.com/tonn24/bookSmart.git"
+  },
+  "author": "Tõnn Toomsalu",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "connect-flash": "^0.1.1",
+    "ejs": "^2.6.2",
+    "express": "^4.17.1",
+    "express-session": "^1.16.2",
+    "method-override": "^3.0.0",
+    "mongoose": "^5.6.11",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^5.0.1"
+  }
+}
