@@ -1,0 +1,12 @@
+<% include ./partials/header %>
+
+<h1>Books page</h1>
+
+<% books.forEach(book => { %>
+    <div>
+        <h4><%= book.title %> </h4>
+        <img src="<%= book.image %>" alt="">
+    </div>
+<% }) %>
+
+<% include ./partials/footer %>
