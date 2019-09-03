@@ -1,12 +1,28 @@
 <% include ./partials/header %>
+<div class="container">
+    <header class="jumbotron">
+        <div class="container">
+                <h1>Booksmart </h1>
+                <p>View people's opinions on different books</p>
+                <p>
+                    <a href="/books/new" class="btn btn-primary btn-large">Add New Book</a>
+                </p>
+        </div>
+    </header>
 
-<h1>Books page</h1>
-
-<% books.forEach(book => { %>
-    <div>
-        <h4><%= book.title %> </h4>
-        <img src="<%= book.image %>" alt="">
+    <div class="row text-center" style="display: flex; flex-wrap: wrap;" >
+        <% books.forEach(book => { %>
+            <div class="col-md-3 col-sm-6">
+                <div class="img-thumbnail">
+                        <img src="<%= book.image %>" alt="">
+            </div>
+            <div class="caption">
+                    <h4><%= book.title %></h4>
+        </div>
+        </div>
+    <% }) %>
     </div>
-<% }) %>
+</div>
+
 
 <% include ./partials/footer %>
