@@ -23,7 +23,8 @@ app.get("/books", (req, res) => {
 app.post("/books", (req, res) => {
     const title = req.body.title;
     const image = req.body.image;
-    const newBook = {title: title, image: image};
+    const author = req.body.author
+    const newBook = {title: title, image: image, author: author};
     books.push(newBook);
     res.redirect("/books");
 });
