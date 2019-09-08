@@ -1,39 +1,48 @@
 const express = require("express"),
       app = express(),
       bodyParser = require("body-parser"),
-      PORT = 9000;
+      PORT = 9000,
+      mongoose = require("mongoose"),
+      Book = require("./models/book"),
+      Review = require("./models/review"),
+      seedDB = require("./seeds"),
+      passport = require("passport"),
+      session = require("express-session"),
+      localStrategy = require("passport-local"),
+      User = require("./models/user")
 
+const bookRoutes = require("./routes/books"),
+      reviewRoutes = require("./routes/reviews"),
+      indexRoutes = require("./routes/index")
+
+mongoose.connect("mongodb://localhost/bookSmart", { useNewUrlParser: true });
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
+app.use(express.static(__dirname + "/public"));
+seedDB();
 
-var books = [
-    {title: "Sapiens: A Brief History of Humankind", image: "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1420585954l/23692271.jpg"},
-    {title: "Homo Deus: A History of Tomorrow", image: "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1468760805l/31138556._SY475_.jpg"}
-]
+//PASSPORT CONFIGURATION
+app.use(require("express-session")({
+    secret: "Lebron James is the greatest basketball player",
+    resave: false,
+    saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new localStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
-app.get("/", (req, res) => {
-    res.render("landing");
-});
+//REQUIRING ROUTES
+app.use("/", indexRoutes);
+app.use("/books", bookRoutes);
+app.use("/books/:id/reviews", reviewRoutes);
 
-
-app.get("/books", (req, res) => {
-    res.render("books", {books: books});
-});
-
-app.post("/books", (req, res) => {
-    const title = req.body.title;
-    const image = req.body.image;
-    const author = req.body.author
-    const newBook = {title: title, image: image, author: author};
-    books.push(newBook);
-    res.redirect("/books");
-});
-
-app.get("/books/new", (req, res) => {
-    res.render("new.ejs");
-});
+app.use(function(req, res, next){
+    res.locals.currentUser = req.user;
+    next();
+}); 
 
 app.listen(PORT, () => {
     console.log("Server is running localhost:" + PORT );
 });
-

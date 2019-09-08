@@ -1,8 +1,8 @@
-<% include ./partials/header %>
+<% include ../partials/header %>
 <div class="container">
     <header class="jumbotron">
         <div class="container">
-                <h1>Booksmart </h1>
+                <h1>BookSmart </h1>
                 <p>View people's opinions on different books</p>
                 <p>
                     <a href="/books/new" class="btn btn-primary btn-large">Add New Book</a>
@@ -19,7 +19,7 @@
                         <h5 class="card-title"><%= book.title %></h5>
                         <hr>
                         <p><%= book.author %></p>
-                        <a href="/campgrounds/<%= book._id %>" class="btn btn-primary">See Reviews</a>
+                        <a href="/books/<%= book._id %>" class="btn btn-primary">More Info</a>
                       </div>
                     </div>
                 </div>
@@ -29,4 +29,4 @@
    
 
 
-<% include ./partials/footer %>
+<% include ../partials/footer %>

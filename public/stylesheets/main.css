@@ -1,7 +1,38 @@
+html {
+    position: relative;
+    min-height: 100%;
+  }
+
 body {
-    background-color: blue;
+    background-color: #F7F5E6;
+    margin-bottom: 60px;
 }
 
-h1 {
-    color: purple;
+.jumbotron {
+    background-color: #52658F;
 }
+
+.btn-primary {
+    background-color: #333A56;
+    border: 0px;
+}
+
+.card {
+   background-color: #E8E8E8;
+   padding: 0;
+}
+.card-img-bottom {
+    color: #fff;
+    height: 20rem;
+    background: url(<%= book.image %>) center no-repeat;
+    background-size: cover;
+  }
+
+#showCard {
+    background-color: #E8E8E8;
+    margin-left: 180px;
+    padding: 0px;
+    
+}
+
+

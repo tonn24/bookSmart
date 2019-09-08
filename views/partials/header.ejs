@@ -1,15 +1,15 @@
 <!DOCTYPE html>
     <html>
         <head>
-            <title>BookSmart</title>
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-            <link rel="stylesheet" href="/stylesheets/main.css">
+          <title>BookSmart</title>
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+          <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+          <link rel="stylesheet" href="/stylesheets/main.css">
         </head>
         
         <body>
 
-                <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+                <nav id="wholeNavbar" class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
                     <a class="navbar-brand" href="/"><i class="fa fa-book fa-lg"></i>BookSmart</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                       <span class="navbar-toggler-icon"></span>
@@ -21,16 +21,20 @@
                         </li>
                       </ul>
                       <ul class="nav navbar-nav navbar-right">   
-                                <li class="nav-item>
-                                  <a href="/" class="nav-link">Login </a>
-                                </li>
-                                <li class="nav-item>
-                                  <a href="/" class="nav-link"> Sign Up</a>
-                                </li>
-                                <li class="nav-item>
-                                    <a href="/" class="nav-link">Log out</a>
-                                </li>
-                        </ul>
+                        <% if(!currentUser){ %>
+                          <li class="nav-item">
+                              <a href="/login" class="nav-link">Login</a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/register" class="nav-link"> Sign Up</a>
+                          </li>
+                       <% } else { %>
+                          <li class="nav-item">
+                              <li class="nav-link">Logged In As <%= currentUser.username %></li>
+                              <a href="/logout" class="nav-link">Log out</a>
+                            </li>
+                       <% } %>
+                      </ul>
                     </div>
                     </nav>
         
