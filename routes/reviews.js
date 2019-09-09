@@ -34,8 +34,8 @@ router.post("/", isLoggedIn, (req, res) => {
                    console.log(err);
                } else {
                    //add username and id to review
-                   review.author.id = req.user._id;
-                   review.author.username = req.user.username;
+                   review.myUser.id = req.user._id;
+                   review.myUser.username = req.user.username;
                    //save comment
                    review.save();
                    book.reviews.push(review);

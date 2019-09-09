@@ -17,8 +17,13 @@ router.get("/", (req, res) => {
 router.post("/", isLoggedIn, (req, res) => {
     const title = req.body.title;
     const image = req.body.image;
-    const author = req.body.author
-    const newBook = {title: title, image: image, author: author};
+    const author = req.body.author;
+    const info = req.body.info;
+    const myUser = {
+        id: req.user._id,
+        username: req.user.username
+    };
+    const newBook = {title: title, image: image, myUser: myUser, info: info};
     Book.create(newBook, (err, newlyAddedBook) => {
         if(err) {
             console.log(err);

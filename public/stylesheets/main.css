@@ -26,7 +26,7 @@ body {
     height: 20rem;
     background: url(<%= book.image %>) center no-repeat;
     background-size: cover;
-  }
+}
 
 #showCard {
     background-color: #E8E8E8;

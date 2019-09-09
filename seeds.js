@@ -27,12 +27,12 @@ let data = [
 
 function seedDB(){
     Book.remove({}, (err) => {
-        if(err) {
+         if(err) {
             console.log(err)
         } 
-        console.log("removed books");
+        console.log("removed books"); 
         //Add couple of books
-        data.forEach((seed) => {
+         data.forEach((seed) => {
             Book.create(seed, (err, book) => {
                 if(err){
                     console.log(err);
@@ -54,7 +54,7 @@ function seedDB(){
                         }
                     )
                 }
-            });
+            }); 
         });
     });
 }
