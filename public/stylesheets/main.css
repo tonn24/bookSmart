@@ -17,6 +17,11 @@ body {
     border: 0px;
 }
 
+.btn-success {
+    background-color: #15390c;
+    border: 0px;
+}
+
 .card {
    background-color: #E8E8E8;
    padding: 0;
@@ -32,7 +37,21 @@ body {
     background-color: #E8E8E8;
     margin-left: 180px;
     padding: 0px;
-    
+}
+
+.btn-info {
+    background-color:#52658F;
+    border: 0px;
+}
+
+.btn-danger {
+    background-color: #764035;
+    border: 0px;
+    display: inline;
+}
+
+deleteForm {
+    display: inline;
 }
 
 

@@ -36,7 +36,7 @@ router.post("/", isLoggedIn, (req, res) => {
                    //add username and id to review
                    review.myUser.id = req.user._id;
                    review.myUser.username = req.user.username;
-                   //save comment
+                   //save review
                    review.save();
                    book.reviews.push(review);
                    book.save();
@@ -46,6 +46,64 @@ router.post("/", isLoggedIn, (req, res) => {
        }
     });
 });
+
+//REVIEW EDIT
+router.get("/:review_id/edit", (req, res) => {
+    Review.findById(req.params.review_id, function(err, review){
+        if(err){
+            res.redirect("back");
+        } else {
+            res.render("reviews/edit", {book_id: req.params.id, review: review});
+        }
+     });
+  });
+
+//UPDATE ROUTE
+router.put("/:review_id", (req, res) => {
+    Review.findByIdAndUpdate(req.params.review_id, req.body.review, (err, review) => {
+        if(err){
+            console.log(err);
+            res.redirect("back");
+        } else {
+            res.redirect("/books/" + req.params.id);
+        }
+    })
+});
+
+//DELETE ROUTE
+/* router.delete("/:review_id",  function(req, res){
+    // find book, remove review from reviews array, delete review in db
+    Book.findByIdAndUpdate(req.params.id, {
+      $pull: {
+        reviews: req.review.id
+      }
+    }, function(err) {
+      if(err){ 
+          console.log(err)
+          //req.flash('error', err.message);
+          res.redirect('/');
+      } else {
+          req.review.remove(function(err) {
+            if(err) {
+              req.flash('error', err.message);
+              return res.redirect('/');
+            }
+            //req.flash('error', 'review deleted!');
+            res.redirect("/books/" + req.params.id);
+          });
+      }
+    });
+  }); */
+   router.delete("/:review_id/", (req, res) => {
+    Review.findByIdAndRemove(req.params.review_id, function(err){
+        if(err) {
+            console.log(err);
+            res.redirect("back");
+        } else {
+            res.redirect("/books/" + req.params.id );
+        }
+    });
+});   
 
 //middleware
 function isLoggedIn(req, res, next){
