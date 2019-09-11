@@ -47,11 +47,14 @@ body {
 .btn-danger {
     background-color: #764035;
     border: 0px;
+}
+
+.deleteForm {
     display: inline;
 }
 
-deleteForm {
-    display: inline;
+.card {
+    border: 0px;
 }
 
 

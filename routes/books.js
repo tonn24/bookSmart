@@ -1,6 +1,7 @@
 const express = require("express");
       router = express(),
-      Book = require("../models/book")
+      Book = require("../models/book"),
+      middleware = require("../middleware");
 
 //INDEX
 router.get("/", (req, res) => {
@@ -14,7 +15,7 @@ router.get("/", (req, res) => {
 });
 
 //CREATE ROUTE
-router.post("/", isLoggedIn, (req, res) => {
+router.post("/", middleware.isLoggedIn, (req, res) => {
     const title = req.body.title;
     const image = req.body.image;
     const author = req.body.author;
@@ -35,7 +36,7 @@ router.post("/", isLoggedIn, (req, res) => {
 });
 
 //NEW ROUTE
-router.get("/new", isLoggedIn, (req, res) => {
+router.get("/new", middleware.isLoggedIn, (req, res) => {
     res.render("books/new");
 });
 
@@ -53,14 +54,14 @@ router.get("/new", isLoggedIn, (req, res) => {
  });
 
  //EDIT BOOK ROUTE
-router.get("/:id/edit", checkBookOwnership,(req, res) => {
+router.get("/:id/edit", middleware.checkBookOwnership,(req, res) => {
     Book.findById(req.params.id, (err, book) => {
         res.render("books/edit", {book: book});
     }); 
 });
 
  //UPDATE BOOK ROUTE
-router.put("/:id", checkBookOwnership, (req, res) => {
+router.put("/:id", middleware.checkBookOwnership, (req, res) => {
     //find and update the the correct book
     Book.findByIdAndUpdate(req.params.id, req.body.book, (err, updatedBook) => {
         if(err){
@@ -72,7 +73,7 @@ router.put("/:id", checkBookOwnership, (req, res) => {
 });
 
 //DESTROY ROUTE
-router.delete("/:id", checkBookOwnership, (req, res) => {
+router.delete("/:id", middleware.checkBookOwnership, (req, res) => {
     Book.findByIdAndRemove(req.params.id, (err) => {
         if(err){
             res.redirect("/books");
@@ -81,52 +82,5 @@ router.delete("/:id", checkBookOwnership, (req, res) => {
         }
     })
 });
-
- //middleware
- function isLoggedIn(req, res, next){
-    if(req.isAuthenticated()){
-        return next();
-    }
-    res.redirect("/login")
-};
-
-function checkBookOwnership(req, res, next){
-    Book.findById(req.params.id, function(err, foundBook){
-      if(err || !foundBook){
-          console.log(err);
-          res.redirect('/book');
-      } else if(foundBook.myUser.id.equals(req.user._id) || req.user.isAdmin){
-          req.book = foundBook;
-          next();
-      } else {
-          res.redirect('/books/' + req.params.id);
-      }
-    });
-  }
-
-function checkUserComment(req, res, next){
-    Review.findById(req.params.reviewId, function(err, foundReview){
-       if(err || !foundReview){
-           console.log(err);
-           req.flash('error', 'Sorry, that comment does not exist!');
-           res.redirect('/books');
-       } else if(foundReview.myUser.id.equals(req.user._id) || req.user.isAdmin){
-            req.review = foundReview;
-            next();
-       } else {
-           req.flash('error', 'You don\'t have permission to do that!');
-           res.redirect('/campgrounds/' + req.params.id);
-       }
-    });
-  }
-
-function isAdmin(req, res, next) {
-    if(req.user.isAdmin) {
-      next();
-    } else {
-      req.flash('error', 'This site is now read only thanks to spam and trolls.');
-      res.redirect('back');
-    }
-  }
 
  module.exports = router;

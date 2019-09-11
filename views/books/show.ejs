@@ -10,7 +10,7 @@
                 <% if(currentUser && book.myUser.id.equals(currentUser._id)){ %>
                     <a href="/books/<%= book._id %>/edit" class="btn btn-info" class ="editButton">Edit</a>
                     <form action="/books/<%= book._id %>?_method=DELETE" method="POST" class="deleteForm">
-                        <input type="submit" class="btn btn-danger" value="Delete">Remove book</input>
+                        <input type="submit" class="btn btn-danger" value="Delete"></input>
                     </form>
                 <% } %>
             </div>
@@ -23,22 +23,25 @@
                 <div class="text-right">
                     <a href="/books/<%= book._id %>/reviews/new"class="btn btn-success" >Add New Review</a>
                     </div>
-                    <hr>
                     <div class="row">
                     <% book.reviews.forEach((review) => { %>
                     <div class="col-md-12 mb-2">
                         <div class="card">
                             <div class="card-body">
+                                <span class="pull-right">10 days ago</span>
                                 <div class="float-left">
-                                    <span class="pull-right">10 days ago</span>
                                     <p class="card-title"><strong><%= review.myUser.username %></strong></p>
                                      <p class="card-text"><%= review.text %></p>
                                  </div>
                             </div>
-                            <a href="/books/<%= book._id %>/reviews/<%= review._id %>/edit" class="btn btn-sm btn-info" >Edit</a>
-                            <form class="deleteForm" action="/books/<%= book._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST">
-                                <button class="btn btn-danger btn-sm">Remove Review</button>
-                            </form>
+                            <% if(currentUser && review.myUser.id.equals(currentUser._id)){ %>
+                            <div class="float-right">
+                                    <a href="/books/<%= book._id %>/reviews/<%= review._id %>/edit" class="btn btn-info btn-sm" >Edit</a>
+                                    <form class="deleteForm" action="/books/<%= book._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST">
+                                        <button class="btn btn-danger btn-sm">Remove Review</button>
+                                    </form>
+                            </div>
+                            <% } %> 
                         </div>
                     </div>
                     <% }) %>
