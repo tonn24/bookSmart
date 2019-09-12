@@ -12,6 +12,10 @@ body {
     background-color: #52658F;
 }
 
+.btn {
+    opacity: 0.8;
+}
+
 .btn-primary {
     background-color: #333A56;
     border: 0px;
