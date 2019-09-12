@@ -57,4 +57,17 @@ body {
     border: 0px;
 }
 
+#login {
+    text-align: center;
+}
+
+#landing{
+    text-align: center;
+}
+
+.container {
+    text-align: center;
+}
+
+
 

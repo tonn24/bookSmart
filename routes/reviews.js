@@ -28,6 +28,7 @@ router.post("/", middleware.isLoggedIn, (req, res) => {
     Book.findById(ID, (err, book) => {
        if(err){
            console.log(err);
+           req.flash("error", "Something went wrong!");
            res.redirect("/books");
        } else {
            Review.create(req.body.review, (err, review) => {
@@ -41,6 +42,7 @@ router.post("/", middleware.isLoggedIn, (req, res) => {
                    review.save();
                    book.reviews.push(review);
                    book.save();
+                   req.flash("success", "You created a new review");
                    res.redirect("/books/" + req.params.id);
                }
            })
@@ -52,8 +54,10 @@ router.post("/", middleware.isLoggedIn, (req, res) => {
 router.get("/:review_id/edit", middleware.checkUserReview, (req, res) => {
     Review.findById(req.params.review_id, function(err, review){
         if(err){
+            req.flash("error", "Something went wrong!");
             res.redirect("back");
         } else {
+            req.flash("success", "Successfully edited review");
             res.render("reviews/edit", {book_id: req.params.id, review: review});
         }
      });
@@ -76,8 +80,10 @@ router.put("/:review_id", middleware.checkBookOwnership, (req, res) => {
     Review.findByIdAndRemove(req.params.review_id, function(err){
         if(err) {
             console.log(err);
+            req.flash("error", "Something went wrong!");
             res.redirect("back");
         } else {
+            req.flash("success", "Successfully deleted review");
             res.redirect("/books/" + req.params.id );
         }
     });

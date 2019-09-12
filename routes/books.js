@@ -37,6 +37,7 @@ router.post("/", middleware.isLoggedIn, (req, res) => {
 
 //NEW ROUTE
 router.get("/new", middleware.isLoggedIn, (req, res) => {
+    
     res.render("books/new");
 });
 
