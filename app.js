@@ -52,6 +52,6 @@ app.use("/books/:id/reviews", reviewRoutes);
 
 
 
-app.listen(PORT, () => {
+app.listen(process.env.PORT || PORT, () => {
     console.log("Server is running localhost:" + PORT );
 });
