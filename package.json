@@ -4,7 +4,8 @@
   "description": "A web page where you can add a book and write a summary on it. Other people can do that also and as a result you can get a lot of different thoughts and  angles on a book. ",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
