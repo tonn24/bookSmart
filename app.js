@@ -17,8 +17,12 @@ const bookRoutes = require("./routes/books"),
       reviewRoutes = require("./routes/reviews"),
       indexRoutes = require("./routes/index")
 
-//mongoose.connect("mongodb://localhost/bookSmart", { useNewUrlParser: true });
-mongoose.connect("mongodb+srv://tonn24:vasikad15@cluster0-0xulm.mongodb.net/test?retryWrites=true&w=majority", {useNewUrlParser: true });
+console.log(process.env.DATABASEURL);
+
+mongoose.connect(process.env.DATABASEURL, { useNewUrlParser: true });
+//mongoose.connect("mongodb+srv://tonn24:vasikad15@cluster0-0xulm.mongodb.net/test?retryWrites=true&w=majority", {useNewUrlParser: true });
+process.env.databaseURL
+
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
@@ -52,6 +56,6 @@ app.use("/books/:id/reviews", reviewRoutes);
 
 
 
-app.listen(process.env.PORT || PORT, () => {
+app.listen(process.env.PORT || PORT, process.env.IP, () => {
     console.log("Server is running localhost:" + PORT );
 });
