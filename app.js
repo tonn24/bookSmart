@@ -17,7 +17,15 @@ const bookRoutes = require("./routes/books"),
       reviewRoutes = require("./routes/reviews"),
       indexRoutes = require("./routes/index")
 
-mongoose.connect("mongodb://localhost/bookSmart", { useNewUrlParser: true });
+//mongoose.connect("mongodb://localhost/bookSmart", { useNewUrlParser: true });
+mongoose.connect("mongodb+srv://tonn24:vasikad15@cluster0-0xulm.mongodb.net/test?retryWrites=true&w=majority", {
+    useNewUrlParser: true,
+    useCreateIndex: true
+}).then(() => {
+    console.log("Connected to DB!");
+}).catch(err => {
+    console.log("ERROR!", err.message);
+}) 
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
