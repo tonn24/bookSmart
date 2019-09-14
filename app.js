@@ -18,7 +18,10 @@ const bookRoutes = require("./routes/books"),
       indexRoutes = require("./routes/index")
 
 mongoose.connect("mongodb://localhost/bookSmart", { useNewUrlParser: true });
-//mongoose.set('useFindAndModify', false);
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
+mongoose.set('useUnifiedTopology', true);
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));

@@ -1,7 +1,7 @@
 html {
     position: relative;
     min-height: 100%;
-  }
+}
 
 body {
     background-color: #F7F5E6;
@@ -10,6 +10,7 @@ body {
 
 .jumbotron {
     background-color: #52658F;
+    text-align: center;
 }
 
 .btn {
@@ -66,10 +67,6 @@ body {
 }
 
 #landing{
-    text-align: center;
-}
-
-.container {
     text-align: center;
 }
 

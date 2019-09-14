@@ -1,3 +1,0 @@
-* Kui käsitsi lisada edit raamatule, siis jookseb lehekülg kokku
-* Review box on vaja tea suureks
-* middleware isAdmin

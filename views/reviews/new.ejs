@@ -6,7 +6,7 @@
         <div class="col-xs-12 col-md-6 col-lg-4">
             <form action="/books/<%= book._id%>/reviews" method="POST">
                 <div class="form-group">
-                        <input type="text" class="form-control" name="review[text]" placeholder="Book review">
+                    <textarea class="form-control" id="exampleFormControlTextarea3" rows="21" name="review[text]" placeholder="Book review"></textarea>
                 </div>
                 <div class="form-group">
                     <button class="btn btn-lg btn-primary btn-block">Submit!</button>

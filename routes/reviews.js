@@ -50,6 +50,20 @@ router.post("/", middleware.isLoggedIn, (req, res) => {
     });
 });
 
+/* //SHOW ROUTE
+router.get("/:review_id", (req, res) => {
+    Review.findById(req.params.review_id, function(err, review){
+        if(err){
+            req.flash("error", "Something went wrong!");
+            res.redirect("back");
+            console.log(err);
+        } else {
+            req.flash("success", "Successfully edited review");
+            res.render("reviews/show", {book_id: req.params.id, review: review});
+        }
+     });
+}); */
+
 //REVIEW EDIT
 router.get("/:review_id/edit", middleware.checkUserReview, (req, res) => {
     Review.findById(req.params.review_id, function(err, review){
@@ -57,7 +71,6 @@ router.get("/:review_id/edit", middleware.checkUserReview, (req, res) => {
             req.flash("error", "Something went wrong!");
             res.redirect("back");
         } else {
-            req.flash("success", "Successfully edited review");
             res.render("reviews/edit", {book_id: req.params.id, review: review});
         }
      });
@@ -70,6 +83,7 @@ router.put("/:review_id", middleware.checkBookOwnership, (req, res) => {
             console.log(err);
             res.redirect("back");
         } else {
+            req.flash("success", "Successfully edited review");
             res.redirect("/books/" + req.params.id);
         }
     })
