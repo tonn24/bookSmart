@@ -19,10 +19,6 @@ const bookRoutes = require("./routes/books"),
 
 //mongoose.connect("mongodb://localhost/bookSmart", { useNewUrlParser: true });
 mongoose.connect("mongodb+srv://tonn24:vasikad15@cluster0-0xulm.mongodb.net/test?retryWrites=true&w=majority", {useNewUrlParser: true });
-mongoose.set('useNewUrlParser', true);
-mongoose.set('useFindAndModify', false);
-mongoose.set('useCreateIndex', true);
-mongoose.set('useUnifiedTopology', true);
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
