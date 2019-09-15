@@ -24,7 +24,7 @@ router.post("/", middleware.isLoggedIn, (req, res) => {
         id: req.user._id,
         username: req.user.username
     };
-    const newBook = {title: title, image: image, myUser: myUser, info: info};
+    const newBook = {title: title, image: image, myUser: myUser, info: info, author: author};
     Book.create(newBook, (err, newlyAddedBook) => {
         if(err) {
             console.log(err);

@@ -22,7 +22,7 @@ console.log(process.env.DATABASEURL);
 
 mongoose.connect(url, { useNewUrlParser: true });
 //mongoose.connect("mongodb+srv://tonn24:vasikad15@cluster0-0xulm.mongodb.net/test?retryWrites=true&w=majority", {useNewUrlParser: true });
-//process.env.databaseURL
+
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
