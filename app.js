@@ -11,7 +11,8 @@ const express = require("express"),
       localStrategy = require("passport-local"),
       User = require("./models/user")
       methodOverride = require("method-override"),
-      flash = require("connect-flash");
+      flash = require("connect-flash"),
+      url = process.env.DATABASEURL || "mongodb://localhost/bookSmart";
 
 const bookRoutes = require("./routes/books"),
       reviewRoutes = require("./routes/reviews"),
@@ -19,9 +20,9 @@ const bookRoutes = require("./routes/books"),
 
 console.log(process.env.DATABASEURL);
 
-mongoose.connect(process.env.DATABASEURL, { useNewUrlParser: true });
+mongoose.connect(url, { useNewUrlParser: true });
 //mongoose.connect("mongodb+srv://tonn24:vasikad15@cluster0-0xulm.mongodb.net/test?retryWrites=true&w=majority", {useNewUrlParser: true });
-process.env.databaseURL
+//process.env.databaseURL
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
@@ -53,8 +54,6 @@ app.use(function(req, res, next){
 app.use("/", indexRoutes);
 app.use("/books", bookRoutes);
 app.use("/books/:id/reviews", reviewRoutes);
-
-
 
 app.listen(process.env.PORT || PORT, process.env.IP, () => {
     console.log("Server is running localhost:" + PORT );

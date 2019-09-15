@@ -6,6 +6,12 @@ html {
 body {
     background-color: #F7F5E6;
     margin-bottom: 60px;
+    font-family: 'Gentium Book Basic', serif;
+    font-size: 1.3rem;
+}
+
+h1 {
+    font-size: 40px;
 }
 
 .jumbotron {
