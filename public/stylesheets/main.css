@@ -75,6 +75,10 @@ h1 {
     body {
         font-size: 2em;
     }
+
+    h1 {
+        font-size: 4rem;
+    }
   }
 
 
