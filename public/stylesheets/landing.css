@@ -86,3 +86,13 @@ body {
   .no-cssanimations .slideshow li {
 	opacity: 1;
 }
+
+@media (max-width: 1028px) {
+  h1 {
+    font-size: 4em;
+  }
+
+  a {
+    font-size: 4em;
+  }
+}
